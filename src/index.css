@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: 'Merriweather';
+    src: url('./assets/fonts/Merriweather-Regular.ttf');
+}
+
+.header-svg {
+    @apply w-6 h-6 hover:stroke-fuchsia-800 cursor-pointer
+}
+
+.footer-btn {
+    @apply flex justify-center py-3 relative border-b-2 border-fuchsia-900
+}
