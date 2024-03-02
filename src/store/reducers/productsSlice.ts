@@ -1,9 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { IProducts } from "../../interfaces/interfaces";
-// import { fetchProducts } from "./actionCreators";
+import { IProduct } from "../../interfaces/interfaces";
 
 interface ProductsState {
-  products: IProducts[];
+  products: IProduct[];
   isLoading: boolean;
   error: string;
 }
@@ -17,20 +16,19 @@ const initialState: ProductsState = {
 const productsSlice = createSlice({
   name: "products",
   initialState,
-  reducers: {},
-  // extraReducers: (builder) => {
-  //   builder.addCase(fetchProducts.pending, (state) => {
-  //     state.isLoading = true;
-  //   });
-  //   builder.addCase(fetchProducts.fulfilled, (state, action) => {
-  //     state.isLoading = false;
-  //     state.products = action.payload;
-  //   });
-  //   builder.addCase(fetchProducts.rejected, (state, action) => {
-  //     state.isLoading = false;
-  //     state.error = action.payload;
-  //   });
-  // },
+  reducers: {
+    addToCart: (state, action) => {
+      const productInCart = state.products.find(
+        (product) => product.id === action.payload.id
+      );
+      if (productInCart) {
+        productInCart.quantity++;
+      } else {
+        state.products.push(action.payload);
+      }
+    },
+  },
 });
 
+export const { addToCart } = productsSlice.actions;
 export default productsSlice.reducer;

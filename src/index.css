@@ -3,14 +3,18 @@
 @tailwind utilities;
 
 @font-face {
-    font-family: 'Merriweather';
-    src: url('./assets/fonts/Merriweather-Regular.ttf');
+  font-family: "Merriweather";
+  src: url("./assets/fonts/Merriweather-Regular.ttf");
 }
 
 .header-svg {
-    @apply w-6 h-6 hover:stroke-fuchsia-800 cursor-pointer
+  @apply w-6 h-6 hover:stroke-fuchsia-800 cursor-pointer;
 }
 
 .footer-btn {
-    @apply flex justify-center py-3 relative border-b-2 border-fuchsia-900
+  @apply flex justify-center py-3 relative border-b-2 border-fuchsia-900;
+}
+
+.menu-li {
+  @apply h-10 border-b border-b-gray-200 cursor-pointer flex items-center pl-2 hover:bg-gray-200;
 }

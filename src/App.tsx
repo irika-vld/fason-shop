@@ -1,15 +1,15 @@
-import Footer from "./components/Footer/footer";
-import Header from "./components/Header/header";
-import Home from "./components/Home/home";
+// import Home from "./components/pages/home";
+// import Favorites from "./components/pages/favorites";
+// import Cart from "./components/pages/cart";
 
-function App() {
-  return (
-    <div className="flex flex-col h-screen justify-between">
-      <Header />
-      <Home />
-      <Footer />
-    </div>
-  );
-}
+// function App() {
+//   return (
+//     <div className="flex flex-col h-screen justify-between">
+//       <Home />
+//       <Favorites/>
+//       <Cart/>
+//     </div>
+//   );
+// }
 
-export default App;
+// export default App;

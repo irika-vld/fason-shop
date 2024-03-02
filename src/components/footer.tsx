@@ -103,7 +103,8 @@ const Footer = () => {
 
         <div>
           <p className="text-center">Contact us</p>
-          <p className="text-3xl">0 000 000 00 00</p>
+          <p className="text-2xl text-center">0 000 000 00 00</p>
+          <p className="text-2xl">shopfason@fas.on</p>
         </div>
       </div>
       <div className="flex flex-col items-center gap-3">
