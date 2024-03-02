@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { IProducts } from "../interfaces/interfaces";
+import { IProduct } from "../interfaces/interfaces";
 
 const BASE_URL = import.meta.env.VITE_PRODUCTS_BASE_URL_API;
 
@@ -9,12 +9,12 @@ export const productsApi = createApi({
     baseUrl: BASE_URL,
   }),
   endpoints: (builder) => ({
-    getProduct: builder.query<IProducts[], null>({
+    getProduct: builder.query<IProduct[], null>({
       query: () => ({
         url: "/products",
       }),
     }),
-    getProductbyId: builder.query<IProducts, number>({
+    getProductbyId: builder.query<IProduct, number>({
       query: (id) => ({
         url: `/products/${id}`,
       }),
@@ -24,7 +24,12 @@ export const productsApi = createApi({
         url: "/products/categories",
       }),
     }),
+    getCategoryByTitle: builder.query<IProduct[], string>({
+      query: (title) => ({
+        url: `/products/category/${title}`,
+      }),
+    }),
   }),
 });
 
-export const { useGetProductQuery, useGetProductbyIdQuery, useGetCategoriesQuery } = productsApi;
+export const { useGetProductQuery, useGetProductbyIdQuery, useGetCategoriesQuery, useGetCategoryByTitleQuery } = productsApi;

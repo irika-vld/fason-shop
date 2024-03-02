@@ -10,6 +10,7 @@ import ProductDetails from "../productDetails";
 import { useLayoutEffect, useState } from "react";
 import Menu from "../menu";
 import Search from "../search";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const { data: products, isLoading, error } = useGetProductQuery(null);
@@ -17,7 +18,7 @@ const Home = () => {
 
   const [isDetailOpen, setIsDetailsOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isSearchOpen, setIsSearchOpen] = useState(true);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [cardId, setCardId] = useState(0);
 
@@ -51,17 +52,16 @@ const Home = () => {
         isSearchOpen={isSearchOpen}
       />
       <div className="mt-12 px-1 sm:px-5">
-        {isSearchOpen && (
-          <Search searchValue={searchValue} setSearchValue={setSearchValue} />
-        )}
+        {isSearchOpen && <Search setSearchValue={setSearchValue} />}
         <ul className="grid grid-cols-2 sm:flex mb-4">
           {categories?.map((category) => (
-            <li
+            <Link
+              to={`/categories/${category}`}
               key={category}
               className="w-full text-sm sm:text-base sm:w-1/4 h-10 flex justify-center items-center border border-gray-100 cursor-pointer hover:bg-gray-100 hover:text-fuchsia-800"
             >
               {category}
-            </li>
+            </Link>
           ))}
         </ul>
         <div className="w-full h-full">

@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { useGetProductbyIdQuery } from "../services/productsService";
+import { useAppDispatch } from "../hooks/redux";
+import { addToCart } from "../store/reducers/productsSlice";
 
 interface Props {
   cardId: number;
@@ -8,6 +10,7 @@ interface Props {
 
 const ProductDetails = ({ cardId, setIsDetailsOpen }: Props) => {
   const { data } = useGetProductbyIdQuery(cardId);
+  const dispatch = useAppDispatch();
 
   return (
     <div className="absolute top-0 bottom-0 left-0 right-0 m-auto bg-white w-2/3 h-4/5">
@@ -37,7 +40,24 @@ const ProductDetails = ({ cardId, setIsDetailsOpen }: Props) => {
               details
             </Link>
 
-            <button className="w-1/4 h-11 bg-fuchsia-700 hover:bg-fuchsia-200">
+            <button
+              className="w-1/4 h-11 bg-fuchsia-700 hover:bg-fuchsia-200"
+              onClick={() =>
+                dispatch(
+                  addToCart({
+                    id: data.id,
+                    title: data.title,
+                    price: data.price,
+                    image: data.image,
+                    rating: {
+                      rate: data.rating.rate,
+                      count: data.rating.count,
+                    },
+                    quantity: 1,
+                  })
+                )
+              }
+            >
               add to cart
             </button>
           </div>

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useGetCategoriesQuery } from "../services/productsService";
 
 const Menu = () => {
@@ -10,9 +11,9 @@ const Menu = () => {
       <div>
         <ul>
           {data?.map((category) => (
-            <li key={category} className="menu-li">
+            <Link to={`/categories/${category}`} key={category} className="menu-li">
               {category}
-            </li>
+            </Link>
           ))}
         </ul>
         <div className="flex flex-col">

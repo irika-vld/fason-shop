@@ -20,7 +20,7 @@ const Card = ({
 
   return (
     <div className="flex flex-col h-full max-h-96 md:max-h-[32rem] min-h-56 w-full min-w-28 max-w-xs mb-2 border border-fuchsia-50 relative">
-      <Link to={`/product/${id}`}>
+      <Link to={`/product/${id}`} className="flex flex-col">
         <div className="flex justify-center mb-2">
           <img
             className="object-contain h-64 md:h-80 w-full min-w-24 max-w-72"
