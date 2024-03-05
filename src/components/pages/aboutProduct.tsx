@@ -1,11 +1,14 @@
 import { useParams } from "react-router-dom";
-import { useGetProductbyIdQuery } from "../services/productsService";
-import Footer from "./footer";
-import HeaderPages from "./headerPages";
+import { useGetProductbyIdQuery } from "../../services/productsService";
+import HeaderPages from "../headers/headerPages";
+import { useAppDispatch } from "../../hooks/redux";
+import { addToCart } from "../../store/slices/productsSlice";
 
 const AboutProduct = () => {
   const { id } = useParams();
   const { data } = useGetProductbyIdQuery(id);
+
+  const dispatch = useAppDispatch();
 
   return (
     <>
@@ -56,7 +59,24 @@ const AboutProduct = () => {
               <button className="w-1/6 h-11 bg-gray-300 hover:bg-fuchsia-200">
                 add to favorites
               </button>
-              <button className="w-1/6 h-11 bg-fuchsia-700 hover:bg-fuchsia-200">
+              <button
+                className="w-1/6 h-11 bg-fuchsia-700 hover:bg-fuchsia-200"
+                onClick={() =>
+                  dispatch(
+                    addToCart({
+                      id: data.id,
+                      title: data.title,
+                      price: data.price,
+                      image: data.image,
+                      rating: {
+                        rate: data.rating.rate,
+                        count: data.rating.count,
+                      },
+                      quantity: 1,
+                    })
+                  )
+                }
+              >
                 add to cart
               </button>
             </div>
@@ -65,7 +85,6 @@ const AboutProduct = () => {
           <h2>Unfortunately, the product was not found</h2>
         )}
       </div>
-      <Footer />
     </>
   );
 };

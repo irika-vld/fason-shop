@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
-import productsSlice from "./reducers/productsSlice";
+import productsSlice from "./slices/productsSlice";
 import { productsApi } from "../services/productsService";
+import favoritesSlice from "./slices/favoritesSlice";
 
 export const store = configureStore({
   reducer: {
     products: productsSlice,
+    favorites: favoritesSlice,
     [productsApi.reducerPath]: productsApi.reducer,
   },
 

@@ -1,9 +1,22 @@
 import { Link } from "react-router-dom";
-import { useAppSelector } from "../hooks/redux";
+import { useAppSelector } from "../../hooks/redux";
+import { useEffect, useRef } from "react";
 
 const HeaderPages = () => {
-
   const countInCart = useAppSelector((state) => state.products.products);
+  const countInFav = useAppSelector((state) => state.favorites.favorites);
+
+  const isMounted = useRef(false);
+
+  useEffect(() => {
+    if (isMounted.current) {
+      const json = JSON.stringify(countInFav);
+      localStorage.setItem("favorites", json);
+      const jsonCart = JSON.stringify(countInCart);
+      localStorage.setItem("cart", jsonCart);
+    }
+    isMounted.current = true;
+  }, [countInFav, countInCart]);
 
   return (
     <header className="h-12 flex fixed top-0 justify-between items-center w-screen px-5 gap-3 bg-white border-b-2 border-gray-100 z-10">
@@ -43,6 +56,13 @@ const HeaderPages = () => {
               d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
             />
           </svg>
+          {countInFav.length > 0 && (
+            <div className="w-5 h-5 absolute top-1 right-11 bg-fuchsia-900 rounded-full">
+              <span className="text-white absolute top-0 right-1 text-sm">
+                {countInFav.length}
+              </span>
+            </div>
+          )}
         </Link>
         <Link to={"/cart"}>
           <div>

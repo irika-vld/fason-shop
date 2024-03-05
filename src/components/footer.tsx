@@ -1,58 +1,191 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
+
 const Footer = () => {
+  const [serviceIsOpen, setServiceIsOpen] = useState(false);
+  const [aboutIsOpen, setAboutIsOpen] = useState(false);
+  const [legalIsOpen, setLegalIsOpen] = useState(false);
+
   return (
     <footer className="bg-fuchsia-950 text-white p-5 flex flex-col items-center gap-5">
-      <div className="flex flex-col w-full">
-        <button className="footer-btn">
-          <p>CUSTOMER SERVICE</p>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="1.5"
-            stroke="currentColor"
-            className="w-6 h-6 absolute right-2 cursor-pointer"
+      <div className="flex flex-col items-center w-full">
+        <div className="flex flex-col w-full">
+          <button
+            className="footer-btn"
+            onClick={() => setServiceIsOpen(!serviceIsOpen)}
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="m19.5 8.25-7.5 7.5-7.5-7.5"
-            />
-          </svg>
-        </button>
-        <button className="footer-btn">
-          <p>ABOUT</p>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="1.5"
-            stroke="currentColor"
-            className="w-6 h-6 absolute right-2 cursor-pointer"
+            <h3>CUSTOMER SERVICE</h3>
+            {serviceIsOpen ? (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                className="w-6 h-6 absolute right-2 cursor-pointer"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="m4.5 15.75 7.5-7.5 7.5 7.5"
+                />
+              </svg>
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                className="w-6 h-6 absolute right-2 cursor-pointer"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="m19.5 8.25-7.5 7.5-7.5-7.5"
+                />
+              </svg>
+            )}
+          </button>
+          {serviceIsOpen && (
+            <ul className="flex flex-col items-center gap-2 m-2 py-3 text-gray-300">
+              <Link
+                to={"/customer_service"}
+                className="cursor-pointer hover:text-gray-200"
+              >
+                Promotions and discounts
+              </Link>
+              <Link
+                to={"/customer_service"}
+                className="cursor-pointer hover:text-gray-200"
+              >
+                Delivery
+              </Link>
+              <Link
+                to={"/customer_service"}
+                className="cursor-pointer hover:text-gray-200"
+              >
+                Payment
+              </Link>
+              <Link
+                to={"/customer_service"}
+                className="cursor-pointer hover:text-gray-200"
+              >
+                Order tracking
+              </Link>
+            </ul>
+          )}
+        </div>
+        <div className="flex flex-col w-full">
+          <button
+            className="footer-btn"
+            onClick={() => setAboutIsOpen(!aboutIsOpen)}
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="m19.5 8.25-7.5 7.5-7.5-7.5"
-            />
-          </svg>
-        </button>
-        <button className="footer-btn">
-          <p>LEGAL</p>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="1.5"
-            stroke="currentColor"
-            className="w-6 h-6 absolute right-2 cursor-pointer"
+            <h3>ABOUT</h3>
+            {aboutIsOpen ? (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                className="w-6 h-6 absolute right-2 cursor-pointer"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="m4.5 15.75 7.5-7.5 7.5 7.5"
+                />
+              </svg>
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                className="w-6 h-6 absolute right-2 cursor-pointer"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="m19.5 8.25-7.5 7.5-7.5-7.5"
+                />
+              </svg>
+            )}
+          </button>
+          {aboutIsOpen && (
+            <ul className="flex flex-col items-center gap-2 m-2 py-3 text-gray-300">
+              <Link
+                to={"/about_us"}
+                className="cursor-pointer hover:text-gray-200"
+              >
+                Company
+              </Link>
+              <Link
+                to={"/about_us"}
+                className="cursor-pointer hover:text-gray-200"
+              >
+                Contacts
+              </Link>
+            </ul>
+          )}
+        </div>
+        <div className="flex flex-col w-full">
+          <button
+            className="footer-btn"
+            onClick={() => setLegalIsOpen(!legalIsOpen)}
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="m19.5 8.25-7.5 7.5-7.5-7.5"
-            />
-          </svg>
-        </button>
+            <h3>LEGAL</h3>
+            {legalIsOpen ? (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                className="w-6 h-6 absolute right-2 cursor-pointer"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="m4.5 15.75 7.5-7.5 7.5 7.5"
+                />
+              </svg>
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                className="w-6 h-6 absolute right-2 cursor-pointer"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="m19.5 8.25-7.5 7.5-7.5-7.5"
+                />
+              </svg>
+            )}
+          </button>
+          {legalIsOpen && (
+            <ul className="flex flex-col items-center gap-2 m-2 py-3 text-gray-300">
+              <Link
+                to={"/legal"}
+                className="cursor-pointer hover:text-gray-200"
+              >
+                Loyalty Program
+              </Link>
+              <Link
+                to={"/legal"}
+                className="cursor-pointer hover:text-gray-200"
+              >
+                Privacy Policy
+              </Link>
+            </ul>
+          )}
+        </div>
       </div>
       <div className="flex flex-col items-center">
         <p>We are on social media</p>

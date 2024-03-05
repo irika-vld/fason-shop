@@ -3,24 +3,33 @@ import {
   useGetCategoriesQuery,
   useGetProductQuery,
 } from "../../services/productsService";
-import Header from "../header";
-import Footer from "../footer";
+import Header from "../headers/header";
 import PresentationBlock from "../Presentation/presentationBlock";
 import ProductDetails from "../productDetails";
-import { useLayoutEffect, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import Menu from "../menu";
 import Search from "../search";
 import { Link } from "react-router-dom";
 
-const Home = () => {
+interface Props {
+  detailsIsOpenHandler: (id: number) => void;
+  isDetailOpen: boolean;
+  setIsDetailsOpen: (x: boolean) => void;
+  cardId: number;
+}
+
+const Home = ({
+  detailsIsOpenHandler,
+  isDetailOpen,
+  setIsDetailsOpen,
+  cardId,
+}: Props) => {
   const { data: products, isLoading, error } = useGetProductQuery(null);
   const { data: categories } = useGetCategoriesQuery(null);
 
-  const [isDetailOpen, setIsDetailsOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
-  const [cardId, setCardId] = useState(0);
 
   const value = searchValue.toLowerCase();
   const filtredProducts = products?.filter(
@@ -28,11 +37,6 @@ const Home = () => {
       product.title.toLowerCase().includes(value) ||
       product.category.toLowerCase().includes(value)
   );
-
-  const detailsIsOpenHandler: (id: number) => void = (id) => {
-    setIsDetailsOpen(true);
-    setCardId(id);
-  };
 
   const handleSize = () => {
     window.innerWidth >= 1280 && setIsMenuOpen(false);
@@ -43,6 +47,12 @@ const Home = () => {
     return () => window.removeEventListener("resize", handleSize);
   }, []);
 
+  const categoryRef = useRef(null);
+
+  const titleClick = () => {
+    categoryRef.current.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <>
       <Header
@@ -50,10 +60,11 @@ const Home = () => {
         isMenuOpen={isMenuOpen}
         setIsSearchOpen={setIsSearchOpen}
         isSearchOpen={isSearchOpen}
+        titleClick={titleClick}
       />
       <div className="mt-12 px-1 sm:px-5">
         {isSearchOpen && <Search setSearchValue={setSearchValue} />}
-        <ul className="grid grid-cols-2 sm:flex mb-4">
+        <ul ref={categoryRef} className="grid grid-cols-2 sm:flex mb-4">
           {categories?.map((category) => (
             <Link
               to={`/categories/${category}`}
@@ -84,7 +95,6 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <Footer />
       {isDetailOpen && (
         <div className="w-full h-screen fixed top-0 left-0 bg-black bg-opacity-50">
           <ProductDetails setIsDetailsOpen={setIsDetailsOpen} cardId={cardId} />
