@@ -2,81 +2,91 @@ import { Link } from "react-router-dom";
 import { useGetProductbyIdQuery } from "../services/productsService";
 import { useAppDispatch, useAppSelector } from "../hooks/redux";
 import { addToCart } from "../store/slices/productsSlice";
+import { Grid } from "react-loader-spinner";
+import { IProductDetails } from "../interfaces/interfaces";
 
-interface Props {
-  cardId: number;
-  setIsDetailsOpen: (x: boolean) => void;
-}
-
-const ProductDetails = ({
-  cardId,
-  setIsDetailsOpen,
-}: Props) => {
-  const { data } = useGetProductbyIdQuery(cardId);
+const ProductDetails = ({ cardId, setIsDetailsOpen }: IProductDetails) => {
+  const { data, isLoading } = useGetProductbyIdQuery(cardId);
   const dispatch = useAppDispatch();
 
   const prodInCart = useAppSelector((state) => state.products.products);
   const currentProduct = prodInCart.find((el) => el.id === cardId);
 
   return (
-    <div className="absolute top-0 bottom-0 left-0 right-0 m-auto bg-white w-2/3 h-4/5 z-10">
-      {data ? (
-        <div className="h-full flex flex-col">
-          <div className="flex flex-col items-center md:items-start md:flex-row gap-7 p-3 md:p-9 h-full">
-            <div className="w-2/5  h-1/3 md:h-4/5">
-              <img
-                className="h-full w-full max-h-64 md:max-h-80 object-contain"
-                src={data.image}
-                alt="product"
-              />
-            </div>
-            <div className="flex flex-col gap-9 w-3/5 justify-between">
-              <div className="flex flex-col gap-5">
-                <span className="w-full text-sm md:text-lg font-semibold">
-                  {data.title}
-                </span>
-                <span className="text-zinc-700 italic text-sm">
-                  {data.category}
-                </span>
-              </div>
-              <span className="text-lg md:text-2xl font-semibold text-right text-fuchsia-800 mb-1 md:mb-40">
-                $ {data.price}
-              </span>
-            </div>
-          </div>
-          <div className="text-sm md:text-base flex justify-center">
-            <Link
-              to={`/product/${cardId}`}
-              className="w-2/5 h-11 p-1 bg-gray-300 hover:bg-fuchsia-200 flex justify-center items-center"
-            >
-              details
-            </Link>
-
-            <button
-              className="w-2/5 md:w-1/4 h-11 p-1 bg-fuchsia-700 hover:bg-fuchsia-200"
-              onClick={() =>
-                dispatch(
-                  addToCart({
-                    id: data.id,
-                    title: data.title,
-                    price: data.price,
-                    image: data.image,
-                    rating: {
-                      rate: data.rating.rate,
-                      count: data.rating.count,
-                    },
-                    quantity: 1,
-                  })
-                )
-              }
-            >
-              add to cart
-            </button>
-          </div>
-        </div>
+    <div className="absolute top-0 bottom-0 left-0 right-0 m-auto bg-white w-2/3 h-4/5">
+      {isLoading ? (
+        <Grid
+          visible={true}
+          height="30"
+          width="30"
+          color="#c213b9"
+          ariaLabel="grid-loading"
+          radius="12.5"
+          wrapperStyle={{}}
+          wrapperClass="flex h-full justify-center items-center"
+        />
       ) : (
-        <h2>Unfortunately, the product was not found</h2>
+        <div className="h-full flex flex-col">
+          {data ? (
+            <>
+              <div className="flex flex-col items-center md:items-start md:flex-row gap-7 p-3 md:p-9 h-full">
+                <div className="w-2/5  h-1/3 md:h-4/5">
+                  <img
+                    className="h-full w-full max-h-64 md:max-h-80 object-contain"
+                    src={data.image}
+                    alt="product"
+                  />
+                </div>
+                <div className="flex flex-col gap-9 w-3/5 justify-between">
+                  <div className="flex flex-col gap-5">
+                    <span className="w-full text-sm md:text-lg font-semibold">
+                      {data.title}
+                    </span>
+                    <span className="text-zinc-700 italic text-sm">
+                      {data.category}
+                    </span>
+                  </div>
+                  <span className="text-lg md:text-2xl font-semibold text-right text-fuchsia-800 mb-1 md:mb-40">
+                    $ {data.price}
+                  </span>
+                </div>
+              </div>
+              <div className="text-sm md:text-base flex justify-center">
+                <Link
+                  to={`/product/${cardId}`}
+                  className="w-2/5 h-11 p-1 bg-gray-300 hover:bg-fuchsia-200 flex justify-center items-center"
+                >
+                  details
+                </Link>
+
+                <button
+                  className="w-2/5 md:w-1/4 h-11 p-1 bg-fuchsia-700 hover:bg-fuchsia-200"
+                  onClick={() =>
+                    dispatch(
+                      addToCart({
+                        id: data.id,
+                        title: data.title,
+                        price: data.price,
+                        image: data.image,
+                        rating: {
+                          rate: data.rating.rate,
+                          count: data.rating.count,
+                        },
+                        quantity: 1,
+                      })
+                    )
+                  }
+                >
+                  add to cart
+                </button>
+              </div>
+            </>
+          ) : (
+            <h2>Unfortunately, the product was not found</h2>
+          )}
+        </div>
       )}
+
       <button
         className="absolute top-2 right-2"
         onClick={() => setIsDetailsOpen(false)}

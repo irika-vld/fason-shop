@@ -96,7 +96,11 @@ const Cart = () => {
                             viewBox="0 0 24 24"
                             strokeWidth="1.5"
                             stroke="currentColor"
-                            className="w-6 h-6 stroke-fuchsia-900 hover:scale-105"
+                            className={`w-6 h-6 ${
+                              product.quantity === 1
+                                ? "stroke-gray-400"
+                                : "stroke-fuchsia-900 hover:scale-105"
+                            }`}
                           >
                             <path
                               strokeLinecap="round"

@@ -17,6 +17,10 @@ import { useState } from "react";
 import CustomerService from "./components/pages/customerService";
 import AboutCompany from "./components/pages/aboutCompany";
 import Legal from "./components/pages/legal";
+import SalePage from "./components/pages/salePage";
+import Loyality from "./components/pages/loyality";
+import Trends from "./components/pages/trends";
+import Brands from "./components/pages/brands";
 
 const Layout = () => {
   return (
@@ -77,6 +81,10 @@ function App() {
         <Route path="/customer_service" element={<CustomerService />}></Route>
         <Route path="/about_us" element={<AboutCompany />}></Route>
         <Route path="/legal" element={<Legal />}></Route>
+        <Route path="/sale" element={<SalePage />}></Route>
+        <Route path="/club" element={<Loyality />}></Route>
+        <Route path="/trends" element={<Trends />}></Route>
+        <Route path="/brands" element={<Brands />}></Route>
       </Route>
     )
   );

@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import { useGetCategoriesQuery } from "../services/productsService";
+import { Grid } from "react-loader-spinner";
 
 const Menu = () => {
-  const { data } = useGetCategoriesQuery(null);
+  const { data, isLoading } = useGetCategoriesQuery(null);
   return (
     <div className="fixed top-10 h-full w-3/5 text-sm sm:w-1/3 xl:w-full xl:static sm:text-base border border-gray-200 bg-fuchsia-50 ">
       <span className="flex font-semibold text-2xl justify-end mb-6 p-2">
@@ -10,15 +11,35 @@ const Menu = () => {
       </span>
       <div>
         <ul>
+          {isLoading && (
+            <Grid
+              visible={true}
+              height="20"
+              width="20"
+              color="#c213b9"
+              ariaLabel="grid-loading"
+              radius="12.5"
+              wrapperStyle={{}}
+              wrapperClass="flex justify-center"
+            />
+          )}
           {data?.map((category) => (
-            <Link to={`/categories/${category}`} key={category} className="menu-li">
+            <Link
+              to={`/categories/${category}`}
+              key={category}
+              className="menu-li"
+            >
               {category}
             </Link>
           ))}
         </ul>
         <div className="flex flex-col">
-          <span className="menu-li text-red-800 font-semibold">Sale</span>
-          <span className="menu-li">Brands</span>
+          <Link to={"/sale"}>
+            <span className="menu-li text-red-800 font-semibold">Sale</span>
+          </Link>
+          <Link to={"/brands"}>
+            <span className="menu-li">Brands</span>
+          </Link>
         </div>
       </div>
       <div className="flex flex-col bg-orange-100">
@@ -39,8 +60,12 @@ const Menu = () => {
           </svg>
           <span>Sign in / register</span>
         </div>
-        <span className="menu-li">Promotions and discounts</span>
-        <span className="menu-li">Delivery</span>
+        <Link to={"/customer_service"}>
+          <span className="menu-li">Promotions and discounts</span>
+        </Link>
+        <Link to={"/customer_service"}>
+          <span className="menu-li">Delivery</span>
+        </Link>
         <div className="h-10 border-b border-b-gray-200 flex items-center pl-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"

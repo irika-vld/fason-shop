@@ -6,24 +6,19 @@ import {
 import Header from "../headers/header";
 import PresentationBlock from "../Presentation/presentationBlock";
 import ProductDetails from "../productDetails";
-import { useLayoutEffect, useRef, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import Menu from "../menu";
 import Search from "../search";
 import { Link } from "react-router-dom";
-
-interface Props {
-  detailsIsOpenHandler: (id: number) => void;
-  isDetailOpen: boolean;
-  setIsDetailsOpen: (x: boolean) => void;
-  cardId: number;
-}
+import { Grid } from "react-loader-spinner";
+import { ICardDetails } from "../../interfaces/interfaces";
 
 const Home = ({
   detailsIsOpenHandler,
   isDetailOpen,
   setIsDetailsOpen,
   cardId,
-}: Props) => {
+}: ICardDetails) => {
   const { data: products, isLoading, error } = useGetProductQuery(null);
   const { data: categories } = useGetCategoriesQuery(null);
 
@@ -47,10 +42,12 @@ const Home = ({
     return () => window.removeEventListener("resize", handleSize);
   }, []);
 
-  const categoryRef = useRef(null);
-
   const titleClick = () => {
-    categoryRef.current.scrollIntoView({ behavior: "smooth" });
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
   };
 
   return (
@@ -64,7 +61,7 @@ const Home = ({
       />
       <div className="mt-12 px-1 sm:px-5">
         {isSearchOpen && <Search setSearchValue={setSearchValue} />}
-        <ul ref={categoryRef} className="grid grid-cols-2 sm:flex mb-4">
+        <ul className="grid grid-cols-2 sm:flex mb-4">
           {categories?.map((category) => (
             <Link
               to={`/categories/${category}`}
@@ -83,7 +80,18 @@ const Home = ({
             <Menu />
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-x-1.5 gap-y-1.5 sm:gap-y-6 xl:w-4/5">
-            {isLoading && <h2>Loading...</h2>}
+            {isLoading && (
+              <Grid
+                visible={true}
+                height="30"
+                width="30"
+                color="#c213b9"
+                ariaLabel="grid-loading"
+                radius="12.5"
+                wrapperStyle={{}}
+                wrapperClass="flex justify-center"
+              />
+            )}
             {error && <h2>An error occured: {error.error}</h2>}
             {filtredProducts?.map((product) => (
               <Card

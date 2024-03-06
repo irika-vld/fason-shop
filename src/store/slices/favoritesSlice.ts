@@ -1,17 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getFavoritesFromLS } from "../../utils/getFavoritesFromLS";
+import { IFavoritesState } from "../../interfaces/interfaces";
 
-interface FavoritesState {
-  favorites: {
-    id: number;
-    title: string;
-    price: number;
-    category: string;
-    image: string;
-  }[];
-}
-
-const initialState: FavoritesState = {
+const initialState: IFavoritesState = {
   favorites: getFavoritesFromLS(),
 };
 

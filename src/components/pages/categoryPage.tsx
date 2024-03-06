@@ -4,22 +4,17 @@ import { categoriesData } from "../../assets/data";
 import HeaderPages from "../headers/headerPages";
 import Card from "../card";
 import ProductDetails from "../productDetails";
-
-interface Props {
-  detailsIsOpenHandler: (id: number) => void;
-  isDetailOpen: boolean;
-  setIsDetailsOpen: (x: boolean) => void;
-  cardId: number;
-}
+import { Grid } from "react-loader-spinner";
+import { ICardDetails } from "../../interfaces/interfaces";
 
 const CategoryPage = ({
   detailsIsOpenHandler,
   isDetailOpen,
   setIsDetailsOpen,
   cardId,
-}: Props) => {
+}: ICardDetails) => {
   const { title } = useParams();
-  const { data } = useGetCategoryByTitleQuery(title);
+  const { data, isLoading } = useGetCategoryByTitleQuery(title);
   const currentBanner = categoriesData.find((el) => el.tag === title);
 
   return (
@@ -54,6 +49,18 @@ const CategoryPage = ({
           />
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-x-1.5 gap-y-1.5 sm:gap-y-6 xl:w-4/5 mb-10">
+          {isLoading && (
+            <Grid
+              visible={true}
+              height="30"
+              width="30"
+              color="#c213b9"
+              ariaLabel="grid-loading"
+              radius="12.5"
+              wrapperStyle={{}}
+              wrapperClass="flex h-full justify-center items-center"
+            />
+          )}
           {data?.map((product) => (
             <Card
               key={product.id}

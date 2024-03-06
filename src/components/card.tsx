@@ -4,15 +4,7 @@ import {
   addToFavorites,
   removeFromFavorites,
 } from "../store/slices/favoritesSlice";
-
-interface Props {
-  id: number;
-  title: string;
-  price: number;
-  image: string;
-  category: string;
-  detailsIsOpenHandler: (id: number) => void;
-}
+import { ICard } from "../interfaces/interfaces";
 
 const Card = ({
   id,
@@ -21,7 +13,7 @@ const Card = ({
   image,
   category,
   detailsIsOpenHandler,
-}: Props) => {
+}: ICard) => {
   const dispatch = useAppDispatch();
 
   const prodInFavorites = useAppSelector((state) => state.favorites.favorites);

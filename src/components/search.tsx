@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import debounce from "lodash.debounce";
 
 interface Props {
@@ -22,12 +22,18 @@ const Search = ({ setSearchValue }: Props) => {
     []
   );
 
-  const changeInputHandler = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const changeInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
     updateSearchValue(e.target.value);
   };
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  }, [value]);
 
   return (
     <div className="flex flex-col h-10 justify-center items-center">

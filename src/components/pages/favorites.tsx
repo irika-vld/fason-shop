@@ -1,21 +1,15 @@
 import { useAppSelector } from "../../hooks/redux";
+import { ICardDetails } from "../../interfaces/interfaces";
 import Card from "../card";
 import HeaderPages from "../headers/headerPages";
 import ProductDetails from "../productDetails";
-
-interface Props {
-  detailsIsOpenHandler: (id: number) => void;
-  isDetailOpen: boolean;
-  setIsDetailsOpen: (x: boolean) => void;
-  cardId: number;
-}
 
 const Favorites = ({
   detailsIsOpenHandler,
   isDetailOpen,
   setIsDetailsOpen,
   cardId,
-}: Props) => {
+}: ICardDetails) => {
   const favorites = useAppSelector((state) => state.favorites.favorites);
 
   return (

@@ -1,14 +1,7 @@
 import { Link } from "react-router-dom";
 import { useAppSelector } from "../../hooks/redux";
 import { useEffect, useRef } from "react";
-
-interface Props {
-  setIsMenuOpen: (x: boolean) => void;
-  isMenuOpen: boolean;
-  isSearchOpen: boolean;
-  setIsSearchOpen: (x: boolean) => void;
-  titleClick: () => void;
-}
+import { IHeader } from "../../interfaces/interfaces";
 
 const Header = ({
   setIsMenuOpen,
@@ -16,7 +9,7 @@ const Header = ({
   isSearchOpen,
   setIsSearchOpen,
   titleClick,
-}: Props) => {
+}: IHeader) => {
   const countInCart = useAppSelector((state) => state.products.products);
   const countInFav = useAppSelector((state) => state.favorites.favorites);
 

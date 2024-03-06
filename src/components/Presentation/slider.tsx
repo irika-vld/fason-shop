@@ -22,9 +22,9 @@ const Slider = () => {
   };
 
   return (
-    <div className="h-full relative overflow-hidden">
+    <div className="h-full relative">
       <div
-        className="h-full w-full bg-center bg-cover duration-300 cursor-pointer"
+        className="min-h-44 h-full w-full bg-center bg-cover duration-300 cursor-pointer"
         style={{ backgroundImage: `url(${banner[currentIndex].img})` }}
       ></div>
       <div className="absolute bottom-2 right-1">
@@ -72,7 +72,9 @@ const Slider = () => {
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               fill="currentColor"
-              className="w-3 h-3 fill-slate-500 hover:fill-fuchsia-700"
+              className={`w-3 h-3 ${
+                currentIndex === index ? "fill-fuchsia-700" : "fill-slate-500"
+              } hover:fill-fuchsia-700`}
             >
               <path
                 fillRule="evenodd"

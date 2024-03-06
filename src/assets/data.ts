@@ -26,21 +26,25 @@ export const photos = [
     id: 1,
     img: "https://ulus.media/wp-content/uploads/2023/10/moda2.jpg",
     tag: "trends",
+    link: "/trends",
   },
   {
     id: 2,
     img: "https://antikvarikon.ru/assets/images/brendovye-veshchi-skupka/brendovye-veshchi.png",
     tag: "brands",
+    link: "/brands",
   },
   {
     id: 3,
     img: "https://manzanagroup.ru/upload/medialibrary/9f4/skidki.png",
     tag: "sale",
+    link: "/sale",
   },
   {
     id: 4,
     img: "https://assets.gq.ru/photos/621cd3faa34fedf24f50e77e/1:1/w_1600%2Cc_limit/GettyImages-1217808172.jpg",
     tag: "club",
+    link: "/club",
   },
 ];
 
