@@ -7,9 +7,9 @@ const SalePage = () => {
       <div className="mt-20 mb-10 mx-5 flex flex-col items-center gap-6">
         <h1 className="font-bold text-2xl mb-6">Sale</h1>
         <div className="flex flex-col gap-3">
-          <div className="flex gap-3">
+          <div className="flex flex-col sm:flex-row gap-3">
             <img
-              className="w-1/3 h-1/5 object-cover"
+              className="w-full sm:w-1/3 h-1/5 object-cover"
               src="https://marketplace.canva.com/EAFLtJa7Jqo/1/0/1600w/canva-red-creative-sale-promo-banner-A_Te0b9wP9o.jpg"
               alt="promo"
             />
@@ -21,9 +21,9 @@ const SalePage = () => {
               </p>
             </div>
           </div>
-          <div className="flex gap-3">
+          <div className="flex flex-col sm:flex-row  gap-3">
             <img
-              className="w-1/3 h-1/5 object-cover"
+              className="w-full sm:w-1/3 h-1/5 object-cover"
               src="https://img.freepik.com/free-vector/black-friday-sale-with-realistic-3d-paper-page_1361-3675.jpg"
               alt="promo"
             />
@@ -34,9 +34,9 @@ const SalePage = () => {
               in, efficitur lacus.
             </p>
           </div>
-          <div className="flex gap-3">
+          <div className="flex flex-col sm:flex-row gap-3">
             <img
-              className="w-1/3 h-1/5 object-cover"
+              className="w-full sm:w-1/3 h-1/5 object-cover"
               src="https://previews.123rf.com/images/wildangel/wildangel1408/wildangel140800096/30878403-sale-on-clothes-in-the-retail-store.jpg"
               alt="promo"
             />

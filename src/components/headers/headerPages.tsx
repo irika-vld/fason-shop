@@ -5,6 +5,7 @@ import { useEffect, useRef } from "react";
 const HeaderPages = () => {
   const countInCart = useAppSelector((state) => state.products.products);
   const countInFav = useAppSelector((state) => state.favorites.favorites);
+  const user = useAppSelector((state) => state.user.user);
 
   const isMounted = useRef(false);
 
@@ -14,9 +15,11 @@ const HeaderPages = () => {
       localStorage.setItem("favorites", json);
       const jsonCart = JSON.stringify(countInCart);
       localStorage.setItem("cart", jsonCart);
+      const jsonUser = JSON.stringify(user);
+      localStorage.setItem("user", jsonUser);
     }
     isMounted.current = true;
-  }, [countInFav, countInCart]);
+  }, [countInFav, countInCart, user]);
 
   return (
     <header className="h-12 flex fixed top-0 justify-between items-center w-screen px-5 gap-3 bg-white border-b-2 border-gray-100 z-10">
@@ -27,20 +30,28 @@ const HeaderPages = () => {
         Fason
       </Link>
       <div className="flex gap-2.5">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth="1.5"
-          stroke="currentColor"
-          className="header-svg"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
-          />
-        </svg>
+        {user && <div className="hidden md:block text-sm">{user.userName}</div>}
+        <Link to={"/profile"}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="1.5"
+            stroke="currentColor"
+            className={`${
+              user
+                ? "w-6 h-6 stroke-green-700 hover:stroke-fuchsia-800 cursor-pointer"
+                : "header-svg"
+            } `}
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
+            />
+          </svg>
+        </Link>
+
         <Link to={"/favorites"}>
           <svg
             xmlns="http://www.w3.org/2000/svg"

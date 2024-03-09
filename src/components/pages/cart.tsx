@@ -33,24 +33,24 @@ const Cart = () => {
       {products.length ? (
         <div className="mt-20 mx-5 mb-5">
           <h2 className="text-2xl font-semibold text-center">Shopping Cart</h2>
-          <div className="flex">
-            <ul className="w-11/12 m-3">
+          <div className="flex flex-col xl:flex-row">
+            <ul className="flex flex-col sm:block w-full xl:w-11/12 m-3">
               {products.map((product) => (
                 <li
                   key={product.id}
-                  className="flex gap-10 border-b-2 border-gray-100 p-3 h-52"
+                  className="flex flex-col items-center sm:items-start sm:flex-row gap-2 md:gap-10 h-full border-b-2 border-gray-100 p-3 sm:h-52"
                 >
                   <img
-                    className="w-1/6 object-contain"
+                    className="w-full h-36 sm:h-full sm:w-1/6 object-contain"
                     src={product.image}
                     alt="product"
                   />
-                  <div className="flex flex-col gap-8 w-4/6">
+                  <div className="flex flex-col gap-8 w-full sm:w-4/6">
                     <div className="flex justify-between">
-                      <span className="font-extrabold w-5/6">
+                      <span className="font-semibold sm:font-extrabold w-4/6 sm:w-5/6">
                         {product.title}
                       </span>
-                      <span className="text-fuchsia-900 font-extrabold w-1/6">
+                      <span className="text-fuchsia-900 font-extrabold w-2/6 sm:w-1/6 ml-2">
                         $ {product.price}
                       </span>
                     </div>
@@ -74,8 +74,8 @@ const Cart = () => {
                       <span>remainder: {product.rating.count}</span>
                     </div>
                   </div>
-                  <div className="w-1/6 relative">
-                    <div className="flex flex-col gap-3">
+                  <div className="flex justify-end sm:justify-start w-full sm:w-1/6 relative">
+                    <div className="flex flex-col gap-3 text-xs xl:text-base">
                       <div className="flex gap-3">
                         <span>Quantity:</span>
                         <span className="font-extrabold">
@@ -131,15 +131,15 @@ const Cart = () => {
                         </button>
                       </div>
                       <div className="flex gap-3">
-                        <span>Total price:</span>
-                        <span className="font-extrabold">
-                          {product.price * product.quantity}
+                        <span className="w-1/3">Total price:</span>
+                        <span className="font-extrabold w-2/3">
+                          $ {product.price * product.quantity}
                         </span>
                       </div>
                     </div>
 
                     <button
-                      className="absolute bottom-1 right-1"
+                      className="absolute top-0 right-0"
                       onClick={() => dispatch(removeFromCart(product.id))}
                     >
                       <svg
@@ -148,7 +148,7 @@ const Cart = () => {
                         viewBox="0 0 24 24"
                         strokeWidth="1.5"
                         stroke="currentColor"
-                        className="w-6 h-6 stroke-gray-400 hover:stroke-fuchsia-900"
+                        className="w-5 h-5 lg:w-6 lg:h-6 stroke-gray-400 hover:stroke-fuchsia-900"
                       >
                         <path
                           strokeLinecap="round"
@@ -162,14 +162,14 @@ const Cart = () => {
               ))}
             </ul>
             <button
-              className="flex w-1/12 h-8 justify-center text-sm text-gray-400 hover:text-fuchsia-900"
+              className="flex w-3/12 sm:w-1/12 h-8 justify-center text-sm text-gray-400 hover:text-fuchsia-900"
               onClick={() => dispatch(clearCart())}
             >
               Clear the cart
             </button>
           </div>
-          <div className="flex justify-end">
-            <div className="flex flex-col items-end w-1/4 gap-5 border-2 border-gray-100 p-3">
+          <div className="flex justify-end mt-5">
+            <div className="flex flex-col items-end w-full lg:w-1/4 gap-5 border-2 border-gray-100 p-3">
               <h2 className="text-xl font-semibold">Total</h2>
               <div className="text-md flex flex-col items-end gap-3">
                 <div className="flex gap-2">

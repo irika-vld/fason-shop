@@ -6,7 +6,7 @@ const AboutCompany = () => {
       <HeaderSimple />
       <div className="flex flex-col items-center mt-20 mb-10 mx-5 gap-2">
         <h1 className="font-bold text-2xl mb-6">About us</h1>
-        <div className="grid grid-rows-3 grid-cols-2 gap-6">
+        <div className="grid md:grid-flow-row md:grid-cols-2 gap-6">
           <img
             src="https://img.freepik.com/free-psd/silver-letters-on-glass-building-facade_145275-162.jpg?size=626&ext=jpg&ga=GA1.1.632798143.1708300800&semt=ais"
             alt="company"
@@ -55,7 +55,7 @@ const AboutCompany = () => {
           </p>
         </div>
         <div>
-          <div className="flex flex-col gap-2 items-center">
+          <div className="flex flex-col gap-2 items-center mt-5">
             <span>0 000 000 00 00</span>
             <span>shopfason@fas.on</span>
             <span>111111, Lorem, Adipiscing elit, ac feugiat, 112</span>

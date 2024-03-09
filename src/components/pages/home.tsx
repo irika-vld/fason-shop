@@ -12,6 +12,9 @@ import Search from "../search";
 import { Link } from "react-router-dom";
 import { Grid } from "react-loader-spinner";
 import { ICardDetails } from "../../interfaces/interfaces";
+import SignIn from "../signIn";
+import Registarion from "../registration";
+import Registration from "../registration";
 
 const Home = ({
   detailsIsOpenHandler,
@@ -22,6 +25,8 @@ const Home = ({
   const { data: products, isLoading, error } = useGetProductQuery(null);
   const { data: categories } = useGetCategoriesQuery(null);
 
+  const [isSignInOpen, setIsSignInOpen] = useState(false);
+  const [isRegistrationOpen, setIsRegistrationOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
@@ -77,7 +82,7 @@ const Home = ({
         </div>
         <div className="mt-8 mb-5 flex relative gap-5">
           <div className="hidden xl:block sticky h-full w-1/5">
-            <Menu />
+            <Menu setIsSignInOpen={setIsSignInOpen} />
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-x-1.5 gap-y-1.5 sm:gap-y-6 xl:w-4/5">
             {isLoading && (
@@ -110,7 +115,24 @@ const Home = ({
       )}
       {isMenuOpen && (
         <div className="w-full h-screen fixed top-0 left-0 bg-black bg-opacity-50">
-          <Menu />
+          <Menu setIsSignInOpen={setIsSignInOpen} />
+        </div>
+      )}
+      {isSignInOpen && (
+        <div className="w-full h-screen fixed top-0 right-0 bg-black bg-opacity-50">
+          <div className="h-full flex justify-center sm:justify-end">
+            <SignIn
+              setIsSignInOpen={setIsSignInOpen}
+              setIsRegistrationOpen={setIsRegistrationOpen}
+            />
+          </div>
+        </div>
+      )}
+      {isRegistrationOpen && (
+        <div className="w-full h-screen fixed top-0 right-0 bg-black bg-opacity-50">
+          <div className="h-full flex justify-center sm:justify-end">
+            <Registration setIsRegistrationOpen={setIsRegistrationOpen} />
+          </div>
         </div>
       )}
     </>

@@ -1,11 +1,25 @@
 import { Link } from "react-router-dom";
 import { useGetCategoriesQuery } from "../services/productsService";
 import { Grid } from "react-loader-spinner";
+import { useAppSelector } from "../hooks/redux";
 
-const Menu = () => {
+interface Props {
+  setIsSignInOpen: (x: boolean) => void;
+}
+
+const Menu = ({ setIsSignInOpen }: Props) => {
   const { data, isLoading } = useGetCategoriesQuery(null);
+
+const user = useAppSelector((state) => state.user.user)
+
   return (
     <div className="fixed top-10 h-full w-3/5 text-sm sm:w-1/3 xl:w-full xl:static sm:text-base border border-gray-200 bg-fuchsia-50 ">
+      {user && (
+        <div className="mx-3 mt-4 text-sm font-semibold">
+          Hello, {user.userName}
+        </div>
+      )}
+
       <span className="flex font-semibold text-2xl justify-end mb-6 p-2">
         Menu
       </span>
@@ -58,7 +72,7 @@ const Menu = () => {
               d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
             />
           </svg>
-          <span>Sign in / register</span>
+          <span onClick={() => setIsSignInOpen(true)}>Sign in / register</span>
         </div>
         <Link to={"/customer_service"}>
           <span className="menu-li">Promotions and discounts</span>

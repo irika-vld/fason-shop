@@ -9,9 +9,9 @@ const Loyality = () => {
         <div>
           <h2 className="font-semibold text-center mb-5">Loyality Programm</h2>
           <div className="flex flex-col gap-3">
-            <div className="flex gap-3">
+            <div className="flex flex-col sm:flex-row gap-3">
               <img
-                className="w-1/3 h-1/5 object-cover"
+                className="w-full sm:w-1/3 h-1/5 object-cover"
                 src="https://t3.ftcdn.net/jpg/04/24/14/14/360_F_424141428_tOehgkc9x59RPsWkUzG4hf3Zdvn1PuN8.jpg"
                 alt="loyality"
               />
@@ -25,9 +25,9 @@ const Loyality = () => {
                 congue dui vitae vehicula. Vivamus in dictum massa.
               </p>
             </div>
-            <div className="flex gap-3">
+            <div className="flex flex-col sm:flex-row gap-3">
               <img
-                className="w-1/3 h-1/5 object-cover"
+                className="w-full sm:w-1/3 h-1/5 object-cover"
                 src="https://static.vecteezy.com/system/resources/previews/008/575/284/original/loyalty-program-banner-outline-style-vector.jpg"
                 alt="loyality"
               />
@@ -38,7 +38,7 @@ const Loyality = () => {
                 in, efficitur lacus.
               </p>
             </div>
-            <div className="flex gap-3">
+            <div className="flex flex-col sm:flex-row gap-3">
               <p className="text-wrap text-sm">
                 Duis euismod libero a scelerisque pulvinar. Donec fermentum quis
                 nisi nec pharetra. Donec pharetra elit tellus, a luctus libero

@@ -21,6 +21,7 @@ import SalePage from "./components/pages/salePage";
 import Loyality from "./components/pages/loyality";
 import Trends from "./components/pages/trends";
 import Brands from "./components/pages/brands";
+import Profile from "./components/pages/profile";
 
 const Layout = () => {
   return (
@@ -85,6 +86,7 @@ function App() {
         <Route path="/club" element={<Loyality />}></Route>
         <Route path="/trends" element={<Trends />}></Route>
         <Route path="/brands" element={<Brands />}></Route>
+        <Route path="/profile" element={<Profile/>}></Route>
       </Route>
     )
   );

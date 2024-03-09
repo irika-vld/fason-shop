@@ -4,8 +4,8 @@ const Legal = () => {
   return (
     <>
       <HeaderSimple />
-      <div className="flex gap-9 mt-20 mb-10 mx-5">
-        <div className="flex flex-col gap-3 w-1/2">
+      <div className="flex flex-col sm:flex-row gap-9 mt-20 mb-10 mx-5">
+        <div className="flex flex-col gap-3 w-full sm:w-1/2">
           <h2 className="font-semibold">Loyalty Program</h2>
           <div className="flex flex-col gap-3 text-sm">
             <p>
@@ -103,7 +103,7 @@ const Legal = () => {
             </p>
           </div>
         </div>
-        <div className="flex flex-col gap-3 w-1/2">
+        <div className="flex flex-col gap-3 w-full sm:w-1/2">
           <h2 className="font-semibold">Privacy Policy</h2>
           <div className="flex flex-col gap-3 text-sm">
             <p>

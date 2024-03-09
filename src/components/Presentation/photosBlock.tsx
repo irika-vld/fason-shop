@@ -5,11 +5,8 @@ const PhotosBlock = () => {
   return (
     <div className="h-full w-full grid grid-cols-2 gap-1">
       {photos.map((photo) => (
-        <Link to={photo.link}>
-          <div
-            key={photo.id}
-            className="relative cursor-pointer overflow-hidden h-full w-full"
-          >
+        <Link to={photo.link} key={photo.id}>
+          <div className="relative cursor-pointer overflow-hidden h-full w-full">
             <img
               src={photo.img}
               alt={photo.tag}
