@@ -6,14 +6,13 @@ import {
 import Header from "../headers/header";
 import PresentationBlock from "../Presentation/presentationBlock";
 import ProductDetails from "../productDetails";
-import { useLayoutEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import Menu from "../menu";
 import Search from "../search";
 import { Link } from "react-router-dom";
 import { Grid } from "react-loader-spinner";
 import { ICardDetails } from "../../interfaces/interfaces";
 import SignIn from "../signIn";
-import Registarion from "../registration";
 import Registration from "../registration";
 
 const Home = ({
@@ -54,6 +53,10 @@ const Home = ({
       behavior: "smooth",
     });
   };
+
+  useEffect(() => {
+    setIsDetailsOpen(false);
+  }, [setIsDetailsOpen]);
 
   return (
     <>
@@ -109,17 +112,17 @@ const Home = ({
         </div>
       </div>
       {isDetailOpen && (
-        <div className="w-full h-screen fixed top-0 left-0 bg-black bg-opacity-50">
+        <div className="modal-fix">
           <ProductDetails setIsDetailsOpen={setIsDetailsOpen} cardId={cardId} />
         </div>
       )}
       {isMenuOpen && (
-        <div className="w-full h-screen fixed top-0 left-0 bg-black bg-opacity-50">
+        <div className="modal-fix">
           <Menu setIsSignInOpen={setIsSignInOpen} />
         </div>
       )}
       {isSignInOpen && (
-        <div className="w-full h-screen fixed top-0 right-0 bg-black bg-opacity-50">
+        <div className="modal-fix">
           <div className="h-full flex justify-center sm:justify-end">
             <SignIn
               setIsSignInOpen={setIsSignInOpen}
@@ -129,7 +132,7 @@ const Home = ({
         </div>
       )}
       {isRegistrationOpen && (
-        <div className="w-full h-screen fixed top-0 right-0 bg-black bg-opacity-50">
+        <div className="modal-fix">
           <div className="h-full flex justify-center sm:justify-end">
             <Registration setIsRegistrationOpen={setIsRegistrationOpen} />
           </div>

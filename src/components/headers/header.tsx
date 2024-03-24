@@ -126,10 +126,8 @@ const Header = ({
             />
           </svg>
           {countInFav.length > 0 && (
-            <div className="w-5 h-5 absolute top-1 right-11 bg-fuchsia-900 rounded-full">
-              <span className="text-white absolute top-0 right-1 text-sm">
-                {countInFav.length}
-              </span>
+            <div className="header-element right-11 flex justify-center items-center">
+              <span className="text-white text-sm">{countInFav.length}</span>
             </div>
           )}
         </Link>
@@ -150,10 +148,8 @@ const Header = ({
               />
             </svg>
             {countInCart.length > 0 && (
-              <div className="w-5 h-5 absolute top-1 right-4 bg-fuchsia-900 rounded-full">
-                <span className="text-white absolute top-0 right-1 text-sm">
-                  {countInCart.length}
-                </span>
+              <div className="header-element right-4 flex justify-center items-center">
+                <span className="text-white text-sm">{countInCart.length}</span>
               </div>
             )}
           </div>

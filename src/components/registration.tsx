@@ -64,27 +64,27 @@ const Registration = ({ setIsRegistrationOpen }: Props) => {
             setFirebaseErr("Email is already used");
           }
         });
-
+        
       setisSignUp(true);
     }
   };
 
-  const nameHandler = (e) => {
+  const nameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
     setErrName(false);
   };
 
-  const emailHandler = (e) => {
+  const emailHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
     setErrEmail(false);
   };
 
-  const passwordHandler = (e) => {
+  const passwordHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
     setErrPassword(false);
   };
 
-  const rePassHandler = (e) => {
+  const rePassHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setRePass(e.target.value);
     setErrRePass(false);
   };
@@ -124,7 +124,7 @@ const Registration = ({ setIsRegistrationOpen }: Props) => {
                 onChange={nameHandler}
                 type="text"
                 placeholder="name"
-                className="h-11 w-full border-b-2 border-fuchsia-900 px-2 outline-0 placeholder:text-xs"
+                className="login-input"
               />
               {errName && (
                 <p className="text-xs text-red-700 mt-2">Enter your name</p>
@@ -137,7 +137,7 @@ const Registration = ({ setIsRegistrationOpen }: Props) => {
                 onChange={emailHandler}
                 type="email"
                 placeholder="name@domain.com"
-                className="h-11 w-full border-b-2 border-fuchsia-900 px-2 outline-0 placeholder:text-xs"
+                className="login-input"
               />
               {errEmail && (
                 <p className="text-xs text-red-700 mt-2">
@@ -156,7 +156,7 @@ const Registration = ({ setIsRegistrationOpen }: Props) => {
                 onChange={passwordHandler}
                 type="password"
                 placeholder="Enter your password"
-                className="h-11 w-full border-b-2 border-fuchsia-900 px-2 outline-0 placeholder:text-xs"
+                className="login-input"
               />
               {errPassword && (
                 <p className="text-xs text-red-700 mt-2">
@@ -171,7 +171,7 @@ const Registration = ({ setIsRegistrationOpen }: Props) => {
                 onChange={rePassHandler}
                 type="password"
                 placeholder="Your password"
-                className="h-11 w-full border-b-2 border-fuchsia-900 px-2 outline-0 placeholder:text-xs"
+                className="login-input"
               />
               {errRePass && (
                 <p className="text-xs text-red-700 mt-2">
@@ -197,7 +197,7 @@ const Registration = ({ setIsRegistrationOpen }: Props) => {
             >
               Go shopping
             </button>
-            <Link to={'/profile'}>
+            <Link to={"/profile"}>
               <button className="w-32 h-9 bg-black text-white text-sm">
                 Go to profile
               </button>

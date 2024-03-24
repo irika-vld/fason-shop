@@ -6,17 +6,21 @@ export interface IProduct {
   category: string;
   image: string;
   rating: { rate: number; count: number };
-  quantity?: number;
 }
 
-export interface IFavoritesState {
-  favorites: {
-    id: number;
-    title: string;
-    price: number;
-    category: string;
-    image: string;
-  }[];
+export interface IFavorites {
+  id: number;
+  title: string;
+  price: number;
+  category: string;
+  image: string;
+}
+
+export interface IUser {
+  id: number;
+  userName: string;
+  email: string;
+  image: string;
 }
 
 export interface ICard {

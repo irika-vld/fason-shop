@@ -21,7 +21,7 @@ const Cart = () => {
     let totalQty = 0;
     products.map((product) => {
       total += product.price * product.quantity;
-      setTotalPrice(total.toFixed(2));
+      setTotalPrice(+total.toFixed(2));
       totalQty += product.quantity;
       setTotalQuantity(totalQty);
     });

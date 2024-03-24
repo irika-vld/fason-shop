@@ -30,19 +30,19 @@ const AboutProduct = () => {
           <div className="h-full">
             {data ? (
               <>
-                <div className="flex gap-7 p-9 h-full">
-                  <div className="flex justify-center w-1/3 h-128">
-                    <img className="h-2/3" src={data.image} alt="product" />
+                <div className="flex flex-col sm:flex-row gap-7 p-2 sm:p-9 h-full">
+                  <div className="flex justify-center sm:w-1/3 h-80 md:h-128">
+                    <img className="sm:h-2/3 object-contain" src={data.image} alt="product" />
                   </div>
-                  <div className="flex flex-col gap-9 w-2/3 h-2/3 justify-between">
+                  <div className="flex flex-col gap-9 w-full sm:w-2/3 h-2/3 justify-between">
                     <div className="flex flex-col gap-5">
-                      <span className="text-3xl font-semibold">
+                      <span className="text-xl sm:text-3xl font-semibold">
                         {data.title}
                       </span>
                       <span className="text-zinc-700 italic text-sm">
                         {data.category}
                       </span>
-                      <p>{data.description}</p>
+                      <p className="flex text-wrap text-xs sm:text-base">{data.description}</p>
                     </div>
                     <div className="flex flex-col gap-3 items-end">
                       <div className="flex gap-3">
@@ -72,11 +72,11 @@ const AboutProduct = () => {
                   </div>
                 </div>
                 <div className="flex justify-end p-7">
-                  <button className="w-1/6 h-11 bg-gray-300 hover:bg-fuchsia-200">
+                  <button className="w-full sm:w-1/6 h-11 bg-gray-300 hover:bg-fuchsia-200">
                     add to favorites
                   </button>
                   <button
-                    className="w-1/6 h-11 bg-fuchsia-700 hover:bg-fuchsia-200"
+                    className="w-full sm:w-1/6 h-11 bg-fuchsia-700 hover:bg-fuchsia-200"
                     onClick={() =>
                       dispatch(
                         addToCart({

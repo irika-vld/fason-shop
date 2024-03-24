@@ -112,7 +112,7 @@ const SignIn = ({ setIsSignInOpen, setIsRegistrationOpen }: Props) => {
                 onChange={(e) => setEmail(e.target.value)}
                 type="email"
                 placeholder="name@domain.com"
-                className="h-11 w-full border-b-2 border-fuchsia-900 px-2 outline-0 placeholder:text-xs"
+                className="login-input"
               />
               {errEmail && (
                 <p className="text-xs text-red-700 mt-2">
@@ -130,7 +130,7 @@ const SignIn = ({ setIsSignInOpen, setIsRegistrationOpen }: Props) => {
                 onChange={(e) => setPassword(e.target.value)}
                 type="password"
                 placeholder="Enter your password"
-                className="h-11 w-full border-b-2 border-fuchsia-900 px-2 outline-0 placeholder:text-xs"
+                className="login-input"
               />
               {errPassword && (
                 <p className="text-xs text-red-700 mt-2">

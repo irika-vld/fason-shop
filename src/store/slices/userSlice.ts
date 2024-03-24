@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getUserFromLS } from "../../utils/getUserFromLs";
+import { IUser } from "../../interfaces/interfaces";
 
 interface userState {
-  user: null;
+  user: IUser | null;
 }
 
 const initialState: userState = {
