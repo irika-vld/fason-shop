@@ -1,17 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getProductsFromLS } from "../../utils/getProductsFromLS";
+import { IProductWithQuantity } from "../../interfaces/interfaces";
 
 interface ProductsState {
-  products: {
-    id: number;
-    title: string;
-    price: number;
-    description: string;
-    category: string;
-    image: string;
-    rating: { rate: number; count: number };
-    quantity: number;
-  }[];
+  products: IProductWithQuantity[];
 }
 
 const initialState: ProductsState = {

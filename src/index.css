@@ -30,3 +30,7 @@
 .login-input {
   @apply h-11 w-full border-b-2 border-fuchsia-900 px-2 outline-0 placeholder:text-xs
 }
+
+.pagination-btn {
+  @apply flex justify-center items-center h-8 w-8 rounded-full text-sm p-2
+}

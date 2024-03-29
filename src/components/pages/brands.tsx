@@ -4,9 +4,9 @@ const Brands = () => {
   return (
     <>
       <HeaderSimple />
-      <div className="mt-14 mb-3 flex flex-col items-center gap-2 text-white bg-[url('https://c0.wallpaperflare.com/preview/436/326/510/fabric-abstract-fashion-texture.jpg')]">
+      <div className="mt-11 pb-5 flex flex-col items-center gap-2 text-white bg-[url('https://c0.wallpaperflare.com/preview/436/326/510/fabric-abstract-fashion-texture.jpg')]">
         <div className="bg-slate-900/[.5] w-3/6 xl:h-1/6 text-center">
-          <h1 className="font-bold text-2xl mb-6">Brands</h1>
+          <h1 className="font-bold text-2xl mt-3 mb-6">Brands</h1>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 mx-5">
           <img

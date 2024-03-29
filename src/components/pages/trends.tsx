@@ -4,9 +4,9 @@ const Trends = () => {
   return (
     <>
       <HeaderSimple />
-      <div className="mt-14 mb-3 flex flex-col items-center gap-2 text-white bg-[url('https://static.vecteezy.com/system/resources/previews/010/867/758/original/traditional-texture-for-fashion-clothing-design-traditional-textile-knitting-textiles-illustration-and-knit-seamless-pattern-free-vector.jpg')]">
+      <div className="mt-11 pb-5 flex flex-col items-center gap-2 text-white bg-[url('https://static.vecteezy.com/system/resources/previews/010/867/758/original/traditional-texture-for-fashion-clothing-design-traditional-textile-knitting-textiles-illustration-and-knit-seamless-pattern-free-vector.jpg')]">
         <div className="bg-slate-900/[.8] w-3/6 xl:h-1/6 text-center">
-          <h1 className=" font-bold text-2xl mb-6">Trends</h1>
+          <h1 className=" font-bold text-2xl mt-3 mb-6">Trends</h1>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 mx-5">
           <img

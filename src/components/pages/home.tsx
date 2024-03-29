@@ -14,6 +14,7 @@ import { Grid } from "react-loader-spinner";
 import { ICardDetails } from "../../interfaces/interfaces";
 import SignIn from "../signIn";
 import Registration from "../registration";
+import Pagination from "../pagination";
 
 const Home = ({
   detailsIsOpenHandler,
@@ -29,6 +30,8 @@ const Home = ({
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [productsPerPage] = useState(8);
 
   const value = searchValue.toLowerCase();
   const filtredProducts = products?.filter(
@@ -36,6 +39,25 @@ const Home = ({
       product.title.toLowerCase().includes(value) ||
       product.category.toLowerCase().includes(value)
   );
+
+  const lastProductPerPageNum = currentPage * productsPerPage;
+  const firstProductIndex = lastProductPerPageNum - productsPerPage;
+  const currentProducts = filtredProducts?.slice(
+    firstProductIndex,
+    lastProductPerPageNum
+  );
+
+  const paginateFn: (x: number) => void = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  const nextPage = () => {
+    setCurrentPage((prev) => prev + 1);
+  };
+
+  const prevPage = () => {
+    setCurrentPage((prev) => prev - 1);
+  };
 
   const handleSize = () => {
     window.innerWidth >= 1280 && setIsMenuOpen(false);
@@ -87,27 +109,39 @@ const Home = ({
           <div className="hidden xl:block sticky h-full w-1/5">
             <Menu setIsSignInOpen={setIsSignInOpen} />
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-1.5 gap-y-1.5 sm:gap-y-6 xl:w-4/5">
-            {isLoading && (
-              <Grid
-                visible={true}
-                height="30"
-                width="30"
-                color="#c213b9"
-                ariaLabel="grid-loading"
-                radius="12.5"
-                wrapperStyle={{}}
-                wrapperClass="flex justify-center"
+          <div>
+            <div className="w-full grid grid-cols-2 md:grid-cols-4 gap-x-1.5 gap-y-1.5 sm:gap-y-6">
+              {isLoading && (
+                <Grid
+                  visible={true}
+                  height="30"
+                  width="30"
+                  color="#c213b9"
+                  ariaLabel="grid-loading"
+                  radius="12.5"
+                  wrapperStyle={{}}
+                  wrapperClass="flex justify-center"
+                />
+              )}
+              {error && <h2>An error occured: {error.error}</h2>}
+              {currentProducts?.map((product) => (
+                <Card
+                  key={product.id}
+                  {...product}
+                  detailsIsOpenHandler={detailsIsOpenHandler}
+                />
+              ))}
+            </div>
+            {filtredProducts && (
+              <Pagination
+                productsPerPage={productsPerPage}
+                totalyProducts={filtredProducts.length}
+                paginateFn={paginateFn}
+                nextPage={nextPage}
+                prevPage={prevPage}
+                currentPage={currentPage}
               />
             )}
-            {error && <h2>An error occured: {error.error}</h2>}
-            {filtredProducts?.map((product) => (
-              <Card
-                key={product.id}
-                {...product}
-                detailsIsOpenHandler={detailsIsOpenHandler}
-              />
-            ))}
           </div>
         </div>
       </div>

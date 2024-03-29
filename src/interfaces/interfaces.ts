@@ -8,6 +8,20 @@ export interface IProduct {
   rating: { rate: number; count: number };
 }
 
+export interface IProductWithQuantity {
+  id: number;
+  title: string;
+  price: number;
+  description: string;
+  category: string;
+  image: string;
+  rating: {
+    rate: number;
+    count: number;
+  };
+  quantity: number;
+}
+
 export interface IFavorites {
   id: number;
   title: string;
@@ -50,4 +64,13 @@ export interface ICardDetails {
   isDetailOpen: boolean;
   setIsDetailsOpen: (x: boolean) => void;
   cardId: number;
+}
+
+export interface IPagination {
+  productsPerPage: number;
+  totalyProducts: number;
+  paginateFn: (x: number) => void;
+  nextPage: () => void;
+  prevPage: () => void;
+  currentPage: number;
 }

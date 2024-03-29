@@ -24,7 +24,7 @@ const Slider = () => {
   return (
     <div className="h-full relative">
       <div
-        className="min-h-44 h-full w-full bg-center bg-cover duration-300 cursor-pointer"
+        className="min-h-44 h-full w-full bg-center bg-cover duration-500 cursor-pointer"
         style={{ backgroundImage: `url(${banner[currentIndex].img})` }}
       ></div>
       <div className="absolute bottom-2 right-1">

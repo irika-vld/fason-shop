@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import { useAppSelector } from "../../hooks/redux";
-import { useEffect, useRef } from "react";
 import { IHeader } from "../../interfaces/interfaces";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
+import { useAppSelector } from "../../hooks/redux";
 
 const Header = ({
   setIsMenuOpen,
@@ -14,19 +14,7 @@ const Header = ({
   const countInFav = useAppSelector((state) => state.favorites.favorites);
   const user = useAppSelector((state) => state.user.user);
 
-  const isMounted = useRef(false);
-
-  useEffect(() => {
-    if (isMounted.current) {
-      const json = JSON.stringify(countInFav);
-      localStorage.setItem("favorites", json);
-      const jsonCart = JSON.stringify(countInCart);
-      localStorage.setItem("cart", jsonCart);
-      const jsonUser = JSON.stringify(user);
-      localStorage.setItem("user", jsonUser);
-    }
-    isMounted.current = true;
-  }, [countInFav, countInCart, user]);
+  useLocalStorage(countInCart, countInFav, user);
 
   return (
     <header className="h-12 flex fixed top-0 justify-between items-center w-screen px-5 gap-3 bg-white border-b-2 border-gray-100 z-10">
